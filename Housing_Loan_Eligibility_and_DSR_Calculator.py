@@ -80,7 +80,7 @@ def main_menu():
 def get_user_input(prompt, allow_zero=False, allow_negative=False):
     while True: # repeat until the input is non zero and non negative value
         try:
-            value = float(input(prompt)) #if the input not a number will catch exception
+            value = float(input(prompt)) #if the input not a number will catch exception handling
             if not allow_zero and value == 0: # the input is zero
                 print("Please enter a non-zero value.")
             elif not allow_negative and value < 0: # the input is negative value
@@ -93,7 +93,7 @@ def get_user_input(prompt, allow_zero=False, allow_negative=False):
 def get_user_integer_input(prompt, allow_zero=False, allow_negative=False):
     while True: # repeat until the input is non zero and non negative value and just integer number
         try:
-            value = int(input(prompt))#if the input not a integer number will catch exception
+            value = int(input(prompt))#if the input not a integer number will catch exception handling
             if not allow_zero and value == 0: # the input is zero
                 print("Please enter a non-zero integer.")
             elif not allow_negative and value < 0: # the input is negative value
@@ -119,6 +119,11 @@ def main():
 
             # Handle the case where the number of other financial commitments is zero, cannot negative value and word only
             num_commitments = get_user_integer_input("Enter the number of other monthly financial commitments: ", allow_negative=False, allow_zero = True)
+
+            # Check if the entered number of commitments is within the allowed range
+            while num_commitments > 20:
+              print("Error: Number of commitments cannot exceed 20.")
+              num_commitments = get_user_integer_input("Enter the number of other monthly financial commitments (maximum 20): ", allow_negative=False, allow_zero=True)
 
             # Check if there are commitments to be entered
             if num_commitments > 0: #if have financial commitments mean user insert number more than 0 on number of commitment
@@ -195,3 +200,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
